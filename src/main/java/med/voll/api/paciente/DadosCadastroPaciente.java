@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import med.voll.api.endereco.DadosEndereco;
 import med.voll.api.endereco.Endereco;
-import org.hibernate.validator.constraints.br.CPF;
 
 public record DadosCadastroPaciente(
         @NotBlank
