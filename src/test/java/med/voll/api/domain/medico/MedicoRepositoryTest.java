@@ -15,7 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,13 +38,14 @@ class MedicoRepositoryTest {
                 .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
                 .atTime(10,0);
 
-        //when ou act
         var medico = cadastrarMedico("medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
         var paciente = cadastrarPaciente("paciente", "paciente@email.com", "00000000000");
         cadastrarConsulta(medico, paciente, proximaSegundaAs10);
 
-        /
+        //when ou act
         var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
+
+        //then ou assert
         assertThat(medicoLivre).isNull();
 
     }
@@ -62,7 +62,7 @@ class MedicoRepositoryTest {
         var medico = cadastrarMedico("medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
 
         var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
-        assertThat(medico).isEqualTo(medico);
+        assertThat(medicoLivre).isEqualTo(medico);
 
     }
 
